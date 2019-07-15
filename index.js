@@ -5,6 +5,7 @@ const app = express();
 const port = process.env.PORT ||  3003;
 const morgan = require('morgan');
 const mysql = require('mysql');
+const cors = require('cors');
 
 const bodyParser = require('body-parser');
 
@@ -18,6 +19,8 @@ const connection = mysql.createConnection({
 app.use(morgan('short'));
 
 app.use(express.static('./public'));
+
+app.use(cors())
 
 app.use(bodyParser.urlencoded({extended: false}));
 
