@@ -16,6 +16,8 @@ const connection = mysql.createConnection({
   database: 'mysqlPractice'
 });
 
+const path = __dirname;
+
 app.use(morgan('short'));
 
 app.use(express.static('./public'));
@@ -29,15 +31,17 @@ const router = require('./routes/user.js');
 app.use(router);
 
 app.get("/", (req, res) => {
-  var users = [
-    {firstName: "Tania", lastName: "Sharma"},
-    {firstName: "Noma", lastName: "Abdulrehem"},
-    {firstName: "Jinwhoo", lastName: "Hwan"}
-  ]
-  res.json(users);
-  console.log("response");
+  // var users = [
+  //   {firstName: "Tania", lastName: "Sharma"},
+  //   {firstName: "Noma", lastName: "Abdulrehem"},
+  //   {firstName: "Jinwhoo", lastName: "Hwan"}
+  // ]
+  // res.json(users);
+  // console.log("response");
+  res.sendFile(path + "/frontEnd/index.html");
 
 });
+
 
 app.listen(port, () => {
   console.log("server is up and listening on " + port);
