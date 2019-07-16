@@ -38,7 +38,7 @@ app.get("/", (req, res) => {
   // ]
   // res.json(users);
   // console.log("response");
-  res.sendFile(path + "/frontEnd/index.html");
+  res.sendFile(path + "/views/index.html");
 
 });
 
