@@ -9,7 +9,7 @@ const pool = mysql.createPool({
   host: 'localhost',
   user: 'root',
   password: 'password',
-  database: 'mysqlPractice'
+  database: 'newdb'
 });
 
 const connection = pool;
@@ -29,7 +29,8 @@ router.get('/user/:id', (req, res) => {
     const users = rows.map((row) => {
       return {
         firstName: row.first_name,
-        lastName: row.last_name
+        lastName: row.last_name,
+        age: row.age
       }
     });
 
@@ -55,8 +56,9 @@ router.post("/user_create", (req, res) => {
   console.log("First name: " + req.body.create_first_name);
   const firstName = req.body.create_first_name;
   const lastName = req.body.create_last_name;
-  const queryStr = "INSERT INTO users (first_name, last_name) VALUES (?,?)";
-  connection.query(queryStr,[firstName,lastName], (err, results, fields) => {
+  const age = req.body.create_age;
+  const queryStr = "INSERT INTO users (first_name, last_name, age) VALUES (?,?,?)";
+  connection.query(queryStr,[firstName,lastName,age], (err, results, fields) => {
     if (err){
       console.log("failed to insert new user: " + err);
       res.sendStatus(500)
